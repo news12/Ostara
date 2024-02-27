@@ -252,7 +252,7 @@ namespace Ostara
         {
             var captureDevice = (LibPcapLiveDevice)device;
 
-            // Itera pelos endereços e encontra o primeiro endereço IPv4
+            // iterate over each address assigned to this device
             foreach (var address in captureDevice.Addresses)
             {
                 if (address.Addr.ipAddress != null && address.Addr.ipAddress.AddressFamily == AddressFamily.InterNetwork)
