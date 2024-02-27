@@ -358,7 +358,7 @@ namespace Ostara
 
         void AddPacket(TcpPacket tcp, bool inc, PacketInfo.Daemon daemon, ushort port)
         {
-            // Verifica se o objeto tcp é nulo
+            // check if the packet is null
             if (tcp == null)
             {
 #if DEBUG
@@ -369,7 +369,7 @@ namespace Ostara
 
             foreach (var p in packets)
             {
-                // Verifica se o objeto tcp na lista é nulo
+                // check if the packet is a duplicate
                 if (p != null && p.Tcp != null && p.Tcp.SequenceNumber == tcp.SequenceNumber)
                 {
 #if DEBUG
@@ -379,7 +379,7 @@ namespace Ostara
                 }
             }
 
-            // Verifica se o objeto tcp não é nulo antes de adicionar à fila
+            // check if the packet is a partial packet
             if (tcp != null)
             {
                 packets.Enqueue(new PacketClass(tcp, inc, daemon, port));
@@ -388,7 +388,7 @@ namespace Ostara
                 {
                     var p = packets.Dequeue();
 
-                    // Verifica se o objeto tcp em p não é nulo antes de processar
+                    // check if the packet is null
                     if (p != null && p.Tcp != null)
                     {
                         var data = p.Tcp.PayloadData;
